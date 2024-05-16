@@ -1,0 +1,106 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model SayuJapnShop.Models.User
+<style>
+    .main {
+        height: 350px;
+        background-color: white;
+        box-shadow: 0 2px 2px 2px grey;
+        border-radius: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center
+    }
+
+    #mainForm {
+        width: 850px;
+        display: flex;
+        justify-content: space-between
+    }
+
+    input {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+        input:focus {
+            border: 2px solid blue;
+        }
+
+    p {
+        font-size: 25px
+    }
+
+    button {
+        width: 80px
+    }
+
+    #gender {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+    #radio {
+        padding: 3px
+    }
+</style>
+
+<div class="main">
+    <p>Add User</p>
+    <form method="post" class="d-flex flex-column" asp-action="AddUser">
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="text" asp-for="UserName" placeholder="Name" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+
+            </div>
+            <div class="d-flex flex-column">
+                <input type="email" asp-for="Email" placeholder="Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <span class="text-danger">@TempData["ErrorEmail"]</span>
+            </div>
+        </div>
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="password" asp-for="Password" placeholder="Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <span class="text-danger">@TempData["ErrorPassword"]</span>
+            </div>
+            <div class="d-flex flex-column">
+                <div class="d-flex" id="gender">
+                    <span>Role</span>
+                    <input type="radio" id="radio" value="User" asp-for="Role" />
+                    <span>User</span>
+                    <input type="radio" asp-for="Role" id="radio" value="Admin" />
+                    <span>Admin</span>
+
+                </div>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="password" asp-for="PhoneNumber" placeholder="Password" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-column">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <span></span>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+

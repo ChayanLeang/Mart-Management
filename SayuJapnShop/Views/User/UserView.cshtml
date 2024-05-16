@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    int i = 0;
+}
+@model List<SayuJapnShop.Models.User>
+
+<div class="m-2">
+    <p class="text-center" style="font-size:25px">User</p>
+    <a asp-action="AddUser" class="btn btn-primary mb-1 mt-2 d-flex align-items-center justify-content-center" style="border-radius:150px;width:27px;height:27px;">
+        <i class="material-icons">
+            add
+        </i>
+    </a>
+    <table class="table table-hover" style="border-radius:5px;box-shadow:0 2px 2px 2px grey">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>@user.UserName</td>
+                        <td>@user.Email</td>
+                        <td>@user.PhoneNumber</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" asp-action="EditUser" asp-controller="User" asp-route-id="@user.UserId">
+                                <i class="fa fa-edit" style="font-size:17px;color:white"></i>
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-action="DeleteUser" asp-controller="User" asp-route-id="@user.UserId">
+                                <i class="fa fa-trash" style="font-size:17px;color:white"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+

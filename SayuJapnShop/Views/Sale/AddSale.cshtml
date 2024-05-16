@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model SayuJapnShop.Models.Sale
+<style>
+    .main {
+        height: 300px;
+        background-color: white;
+        box-shadow: 0 2px 2px 2px grey;
+        border-radius: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center
+    }
+
+    #mainForm {
+        width: 850px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input, select {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+        input:focus {
+            border: 2px solid blue;
+        }
+
+    p {
+        font-size: 25px
+    }
+
+    button {
+        width: 80px
+    }
+</style>
+
+<div class="main">
+    <p>Add Sale</p>
+    <form method="post" class="d-flex flex-column align-items-center justify-content-center" asp-action="AddSale">
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <select id="Item" asp-for="ItemId" asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))">
+                    <option value="">Item</option>
+                </select>
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-column">
+                <input id="qty" type="number" asp-for="Qty" placeholder="Qty" />
+                <span asp-validation-for="Qty" class="text-danger"></span>
+            </div>
+        </div>
+        <button id="btn" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<a href="~/lib/jquery/dist/jquery.min.map" hidden>~/lib/jquery/dist/jquery.min.map</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+
+    $.ajax({
+        url: '/Sale/GetItemName',
+        type: 'Get',
+        dataType: 'json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (result, statu, xhr) {
+            $("#Item").change(function () {
+                var selectItem = $("#Item option:selected").text();
+                $.each(result, function (index, item) {
+                    if (selectItem == item.itemName) {
+                        $("#qty").attr({
+                            "max": item.qty,
+                            "min": 1
+                        })
+                    }
+                })
+            })
+        }
+    });
+
+</script>
+

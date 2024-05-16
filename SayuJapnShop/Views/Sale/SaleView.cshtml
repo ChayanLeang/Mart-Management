@@ -1,0 +1,153 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    int InvoiceNo = ViewBag.CountInvoice;
+    int Total = ViewBag.Total;
+    int totalAmount = ViewBag.TotalAmount;
+    string date = ViewBag.Date;
+    int i = 0;
+}
+
+@model List<SayuJapnShop.Models.Vsale>
+<div class="m-2">
+    <p style="font-size:25px;text-align:center">Sale</p>
+    <a asp-action="AddSale" class="btn btn-primary mb-1 mt-2 d-flex align-items-center justify-content-center" style="border-radius:150px;width:27px;height:27px;">
+        <i class="material-icons">
+            add
+        </i>
+    </a>
+    <p>Invoice : @InvoiceNo</p>
+    <select id="Customer" style="margin-bottom:15px;padding:8px;width:250px;border:2px solid grey;outline:none;border-radius:5px" asp-items="@(new SelectList(ViewBag.Customer,"CustomerId","CustomerName"))">
+        <option value="">Customer</option>
+    </select>
+
+    <table class="table table-hover" style="border-radius:5px;box-shadow:0 2px 2px 2px grey">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Amount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sale in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@sale.ItemName</td>
+                    <td>$@sale.Price</td>
+                    <td>@sale.Qty</td>
+                    <td>$@sale.Amount</td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" asp-action="DeleteSale" asp-controller="Sale" asp-route-id="@sale.ItemId">
+                            <i class="fa fa-trash" style="font-size:17px;color:white"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="modal"
+         role="dialog"
+         id="InvoiceModal"
+         tabindex="-1" style="font-family:'Kh Siemreap'">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @if (totalAmount != 0)
+                    {
+                        i = 0;
+                        var invoice = (Vinvoice)ViewBag.Invoice;
+                        <div id="print">
+                            <p class="text-center">Ogiwara Shop</p>
+                            <p class="text-center">សង្កាត់ស្មាច់មានជ័យ​​​ ស្រុកដងទង់ ខេត្តកោះកុង</p>
+                            <p class="text-center">លក់ទំនិញគ្រប់ប្រភេទ​ 087266589/098777333</p>
+                            <p class="text-center mb-4">អតិឋិជន:@invoice.CustomerName | ថ្ងៃទី:@invoice.Date | លេខវិក័យប័ត្រ:@invoice.InvoiceId</p>
+                            <table class="table table-hover" style="border-radius:5px;box-shadow:0 1px 1px 1px grey">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var export in (List<Vexport>)ViewBag.Export)
+                                    {
+                                        i++;
+                                        <tr>
+                                            <td>@i</td>
+                                            <td>@export.ItemName</td>
+                                            <td>$@export.Price</td>
+                                            <td>@export.Qty</td>
+                                            <td>$@export.Amount</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td>Total :$@totalAmount</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <form method="get" asp-action="AddToInvoiceAndDeleteSale">
+        <label>Customer</label> : <input id="name" value="n/a" name="name" readonly style="outline:none;border:1px solid white" />
+        <label>Date</label> : <input value="@date" name="date" readonly style="outline:none;border:1px solid white" />
+        <p>Total : $@Total</p>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<a href="~/lib/jquery/dist/jquery.min.map" hidden>~/lib/jquery/dist/jquery.min.map</a>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/print-js/1.6.0/print.js" integrity="sha512-/fgTphwXa3lqAhN+I8gG8AvuaTErm1YxpUjbdCvwfTMyv8UZnFyId7ft5736xQ6CyQN4Nzr21lBuWWA9RTCXCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    if (@totalAmount!= 0) {
+        $(document).ready(function () {
+            $("#InvoiceModal").modal('hide');
+            printJS({
+                printable: "print",
+                type: 'html',
+                targetStyles: ['*'],
+            })
+        });
+    }
+
+    $.ajax({
+        url: '/Sale/GetCustomer',
+        type: 'Get',
+        dataType: 'json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (result, statu, xhr) {
+            $("#Customer").change(function () {
+                var selectCustomer = $("#Customer option:selected").text();
+                $.each(result, function (index, customer) {
+                    if (selectCustomer == customer.customerName) {
+                        $("#name").val(customer.customerName);
+
+                    }
+                })
+            })
+        }
+    });
+</script>
+

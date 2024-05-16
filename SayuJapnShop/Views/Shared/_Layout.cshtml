@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SayuJapnShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SayuJapnShop.styles.css" asp-append-version="true" />
+</head>
+<body class="mainLayout">
+    <div class="d-flex align-items-center bg-primary" style="padding-left:20px;width:100%;height:50px;color:white;position:fixed;top:0;z-index:10">
+        <i class="material-icons" style="margin-right:10px;">menu</i>
+        <label>Ogiwara Shop</label>
+
+    </div>
+    <div class="d-flex" style="width:100%">
+        <div style="width:19%;height:100%;position:fixed;top:50px;background-color:black">
+            <ul class="list-unstyled">
+                <li>
+
+                    <a href="/Home/HomeView" class="active">
+                        <i class="material-icons">home</i>
+                        Home
+                    </a>
+                </li>
+                @if (User.Identity.Name == "Leang ChayAn")
+                {
+                    <li>
+
+                        <a href="/User/UserView">
+                            <i class="material-icons">person_add</i>
+                            Add User
+                        </a>
+                    </li>
+                }
+
+                <li>
+
+                    <a href="/User/StoreUserView">
+                        <i class="material-icons">person</i>
+                        User
+                    </a>
+                </li>
+
+                <li>
+
+                    <a href="/Customer/CustomerView" class="link">
+                        <i class="material-icons">person_add</i>
+                        Customer
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Category/CategoryView">
+                        <i class="material-icons">dashboard</i>
+                        Category
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Item/ItemView">
+                        <i class="material-icons">view_list</i>
+                        Item
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Supplier/SupplierView">
+                        <i class="material-icons">maps_home_work</i>
+                        Supplier
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Purchase/PurchaseView">
+                        <i class="material-icons">add_business</i>
+                        Purchase
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Sale/SaleView">
+                        <i class="material-icons">chrome_reader_mode</i>
+                        Sale
+                    </a>
+                </li>
+                @if (User.Identity.Name == "Leang ChayAn")
+                {
+                    <li>
+
+                        <a href="#" id="mainList">
+                            <div class="d-flex align-items-center">
+                                <i class="material-icons">report</i>
+                                Report
+                                <p style="margin-right:100px"></p>
+                                <i class="material-icons" id="right-icon">expand_more</i>
+                            </div>
+                            <ul class="list-unstyled" id="showList">
+                                <li>
+
+                                    <a href="/Import/ImportView" id="subList">
+                                        <i class="material-icons">arrow_circle_down</i>
+                                        Import
+                                    </a>
+                                </li>
+                                <li>
+
+                                    <a href="/Export/ExportView" id="subList">
+                                        <i class="material-icons">arrow_circle_up</i>
+                                        Export
+                                    </a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+                }
+
+                <li>
+
+                    <a href="/Debt/DebtView">
+                        <i class="material-icons">currency_exchange</i>
+                        Debt
+                    </a>
+                </li>
+                <li>
+
+                    <a href="/Auth/LogOut">
+                        <i class="material-icons">logout</i>
+                        LogOut
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+        <div class="bg-white" style="width:81%;position:absolute;right:0;top:50px">
+            @RenderBody()
+        </div>
+    </div>
+    <a href="~/lib/jquery/dist/jquery.min.map" hidden>~/lib/jquery/dist/jquery.min.map</a>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<script type="text/javascript">
+    document.getElementById("mainList").onclick = function () { toggle() };
+    function toggle() {
+        document.getElementById("showList").classList.toggle("show");
+        document.getElementById("right-icon").classList.toggle("transform")
+    };
+
+
+</script>

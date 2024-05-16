@@ -1,0 +1,53 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string date1 = ViewBag.Date1;
+    string date2 = ViewBag.Date2;
+    int i = 0;
+}
+@model List<SayuJapnShop.Models.VImport>
+<div class="m-2">
+
+    <p class="text-center" style="font-size:25px">Import</p>
+    <div class="mt-1 mb-3 d-flex align-items-center justify-content-center" style="height:100px;border:2px solid black">
+        <form method="get" asp-action="ImportView">
+            <input name="Date1" value="@date1" class="mx-2" type="date" style="padding:8px;width:300px;border-radius:5px;border:2px solid grey;margin-right:10px" />
+            <input name="Date2" value="@date2" class="mx-2" type="date" style="padding:8px;width:300px;border-radius:5px;border:2px solid grey;margin-right:10px" />
+
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+    <table class="table table-hover" style="border-radius:5px;box-shadow:0 2px 2px 2px grey">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Date</th>
+                <th>CompanyName</th>
+                <th>Item</th>
+                <th>Cost</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Remains</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var import in Model)
+            {
+                i++;
+                <tr>
+                    <td>@i</td>
+                    <td>@import.Date</td>
+                    <td>@import.CompanyName</td>
+                    <td>@import.ItemName</td>
+                    <td>$@import.Cost</td>
+                    <td>$@import.Price</td>
+                    <td>@import.Qty</td>
+                    <td>@import.Remains</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

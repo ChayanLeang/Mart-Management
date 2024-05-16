@@ -1,0 +1,119 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    List<string> errorList = (List<string>)ViewBag.ErrorList;
+}
+@model SayuJapnShop.Models.Category
+<style>
+    .main {
+        height: 300px;
+        background-color: white;
+        box-shadow: 0 2px 2px 2px grey;
+        border-radius: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center
+    }
+
+    #mainForm {
+        width: 850px;
+        display: flex;
+        justify-content:space-between;
+    }
+
+    input {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+        input:focus {
+            border: 2px solid blue;
+        }
+
+    p {
+        font-size: 25px
+    }
+
+    #gender {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+    #radio {
+        padding: 3px
+    }
+
+    button {
+        width: 80px
+    }
+</style>
+
+<div class="main">
+    <p>Edit Category</p>
+    <form method="post" class="d-flex flex-column"  asp-action="EditCategory">
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="number" asp-for="CategoryId" readonly />
+                <span></span>
+            </div>
+            <div class="d-flex flex-column">
+                <input type="text" asp-for="CategoryName" placeholder="Name" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                @if (errorList != null)
+                {
+                    @if (errorList[0].Contains("CategoryName") && errorList.Count == 1)
+                    {
+                                <span class="text-danger">@errorList[0]</span>
+                    }
+
+                    @if (errorList.Count > 1 && errorList != null)
+                    {
+                                <span class="text-danger">@errorList[0]</span>
+                    }
+                }
+
+            </div>
+        </div>
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="text" asp-for="Descriptions" placeholder="Description" />
+                <span asp-validation-for="Descriptions" class="text-danger"></span>
+                @if (errorList != null)
+                {
+                    @if (errorList[0].Contains("Descriptions") && errorList.Count == 1)
+                    {
+                                <span class="text-danger">@errorList[0]</span>
+                    }
+                    @if (errorList.Count > 1)
+                    {
+                                <span class="text-danger">@errorList[1]</span>
+                    }
+                }
+
+            </div>
+            <div class="d-flex flex-column">
+                <div class="d-flex" id="gender">
+                    <span>Status</span>
+                    <input type="radio" id="radio" value="active" asp-for="status" />
+                    <span>active</span>
+                    <input type="radio" asp-for="status" id="radio" value="Inactive" />
+                    <span>Inactive</span>
+
+                </div>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+

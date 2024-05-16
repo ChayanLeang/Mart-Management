@@ -1,0 +1,56 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    line-height: 45px;
+    color: white;
+    font-size: 17px;
+    padding-left: 30px;
+    transition: .3s
+}
+
+    ul li a i {
+        margin-right: 10px
+    }
+
+ul li:hover a {
+    padding-left: 40px;
+    color: blue
+}
+
+ul ul #subList {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    line-height: 45px;
+    color: white;
+    font-size: 17px;
+    padding-left: 70px;
+    transition: .3s;
+}
+
+ul ul li:hover #subList {
+    padding-left: 80px;
+    color: blue
+}
+
+ul #showList {
+    display: none;
+}
+
+    ul #showList.show {
+        display: block
+    }
+
+ul a #right-icon.transform {
+    transform: rotate(-180deg)
+}
+
+ul li .active {
+    color: blue;
+}

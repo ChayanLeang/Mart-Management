@@ -1,0 +1,99 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int countUser = ViewBag.userCount;
+    int countCustomer = ViewBag.customerCount;
+    int itemCount = ViewBag.itemCount;
+    int supplierCount = ViewBag.supplierCount;
+    int totalDebt = ViewBag.Debt;
+    int totalExpense = ViewBag.Expense;
+}
+<style>
+
+</style>
+<div class="main">
+    <div class="bg-primary d-flex flex-column justify-content-around" style="height:180px">
+        <label style="color:white;font-size:30px;margin-left:10px">WelCome to Ogiwara</label>
+        <label style="margin-left:10px">Copyright Chtechnology</label>
+        <div class="sub-main d-flex justify-content-around p-1">
+            <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px">
+                <div class="bg-primary d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                    <i class="material-icons" style="color:white;font-size:23px">currency_exchange</i>
+                </div>
+                <div class="sub-income d-flex flex-column">
+                    <label style="color:gray;font-size:12px">Total Income</label>
+                    <label style="color:black;font-size:15px;font-weight:bold">0</label>
+                </div>
+            </div>
+            <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px">
+                <div class="bg-success d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                    <i class="material-icons" style="color:white;font-size:23px">shopping_cart</i>
+                </div>
+                <div class="sub-income d-flex flex-column">
+                    <label style="color:gray;font-size:12px">Total Expenses</label>
+                    <label style="color:black;font-size:15px;font-weight:bold">@totalExpense</label>
+                </div>
+            </div>
+            <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px">
+                <div class="bg-danger d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                    <i class="material-icons" style="color:white;font-size:23px">money_off</i>
+                </div>
+                <div class="sub-income d-flex flex-column">
+                    <label style="color:gray;font-size:12px">Total Debt</label>
+                    <label style="color:black;font-size:15px;font-weight:bold">@totalDebt</label>
+                </div>
+            </div>
+            <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px">
+                <div class="bg-info d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                    <i class="material-icons" style="color:white;font-size:30px">replay_30</i>
+                </div>
+                <div class="sub-income d-flex flex-column">
+                    <label style="color:gray;font-size:12px">Total 30 days</label>
+                    <label style="color:black;font-size:15px;font-weight:bold">0</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around p-1 mt-4">
+        <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px;box-shadow:0px 1px 1px 1px grey">
+            <div class="bg-dark d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                <i class="material-icons" style="color:white;font-size:23px">person</i>
+            </div>
+            <div class="d-flex flex-column">
+                <label style="color:gray;font-size:12px">Total Users</label>
+                <label style="color:black;font-size:15px;font-weight:bold">@countUser</label>
+            </div>
+        </div>
+        <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px;border-radius:3px;box-shadow:0px 1px 1px 1px grey" ">
+            <div class="bg-secondary d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                <i class="material-icons" style="color:white;font-size:23px">people_alt</i>
+            </div>
+            <div class="d-flex flex-column">
+                <label style="color:gray;font-size:12px">Total Customers</label>
+                <label style="color:black;font-size:15px;font-weight:bold">@countCustomer</label>
+            </div>
+        </div>
+        <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px;border-radius:3px;box-shadow:0px 1px 1px 1px grey" ">
+            <div class="bg-warning d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px">
+                <i class="material-icons" style="color:white;font-size:23px">view_list</i>
+            </div>
+            <div class="d-flex flex-column">
+                <label style="color:gray;font-size:12px">Total Items</label>
+                <label style="color:black;font-size:15px;font-weight:bold">@itemCount</label>
+            </div>
+        </div>
+        <div class="bg-white d-flex align-items-center" style="width:24%;height:70px;border-radius:3px;border-radius:3px;box-shadow:0px 1px 1px 1px grey" ">
+            <div class="d-flex justify-content-center align-items-center" style="height:50px;width:50px;border-radius:150px;margin-right:5px;margin-left:10px;background-color:brown">
+                <i class="material-icons" style="color:white;font-size:20px">maps_home_work</i>
+            </div>
+            <div class="sub-income d-flex flex-column">
+                <label style="color:gray;font-size:12px">Total Suppliers</label>
+                <label style="color:black;font-size:15px;font-weight:bold">@supplierCount</label>
+            </div>
+        </div>
+    </div>
+
+</div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+

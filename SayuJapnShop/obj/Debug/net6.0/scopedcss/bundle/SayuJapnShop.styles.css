@@ -1,0 +1,57 @@
+/* _content/SayuJapnShop/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+ul li a[b-8kuntogaxs] {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    line-height: 45px;
+    color: white;
+    font-size: 17px;
+    padding-left: 30px;
+    transition: .3s
+}
+
+    ul li a i[b-8kuntogaxs] {
+        margin-right: 10px
+    }
+
+ul li:hover a[b-8kuntogaxs] {
+    padding-left: 40px;
+    color: blue
+}
+
+ul ul #subList[b-8kuntogaxs] {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    width: 100%;
+    line-height: 45px;
+    color: white;
+    font-size: 17px;
+    padding-left: 70px;
+    transition: .3s;
+}
+
+ul ul li:hover #subList[b-8kuntogaxs] {
+    padding-left: 80px;
+    color: blue
+}
+
+ul #showList[b-8kuntogaxs] {
+    display: none;
+}
+
+    ul #showList.show[b-8kuntogaxs] {
+        display: block
+    }
+
+ul a #right-icon.transform[b-8kuntogaxs] {
+    transform: rotate(-180deg)
+}
+
+ul li .active[b-8kuntogaxs] {
+    color: blue;
+}

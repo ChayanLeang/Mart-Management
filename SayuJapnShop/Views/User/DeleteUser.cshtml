@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model SayuJapnShop.Models.User
+<style>
+    .main {
+        height: 300px;
+        background-color: white;
+        box-shadow: 0 2px 2px 2px grey;
+        border-radius: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center
+    }
+
+    form {
+        width: 850px;
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 15px
+    }
+
+    input {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+        input:focus {
+            border: 2px solid blue;
+        }
+
+    p {
+        font-size: 25px
+    }
+
+    button {
+        width: 80px
+    }
+</style>
+
+<div class="main">
+    <p>Delete User</p>
+    <form method="post" asp-action="DeleteUser">
+        <input type="number" asp-for="UserId" readonly />
+        <input type="text" asp-for="UserName" readonly />
+        <input type="text" asp-for="Email" readonly />
+        <input type="text" asp-for="PhoneNumber" readonly />
+        <input type="text" asp-for="Role" readonly />
+        <input type="text" asp-for="Password" hidden />
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+
+
+
+
+

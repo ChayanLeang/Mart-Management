@@ -1,0 +1,94 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    string date = ViewBag.Date;
+}
+@model SayuJapnShop.Models.MainPurchase
+<style>
+    .main {
+        height: 350px;
+        background-color: white;
+        box-shadow: 0 2px 2px 2px grey;
+        border-radius: 10px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center
+    }
+
+    #mainForm {
+        width: 850px;
+        display: flex;
+        justify-content: space-between
+    }
+
+    input, select {
+        padding: 8px;
+        width: 380px;
+        outline: none;
+        border: 2px solid grey;
+        border-radius: 5px
+    }
+
+        input:focus {
+            border: 2px solid blue;
+        }
+
+    p {
+        font-size: 25px
+    }
+
+    button {
+        width: 80px
+    }
+</style>
+
+<div class="main">
+    <p>Add Purchase</p>
+    <form method="post" class="d-flex flex-column align-items-center justify-content-center" asp-action="AddPurchase">
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <select asp-for="SupplierId" asp-items="@(new SelectList(ViewBag.Supplier,"SupplierId","CompanyName"))">
+                    <option value="">Supplier</option>
+                </select>
+                <span asp-validation-for="SupplierId" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-column">
+                <select asp-for="ItemId" asp-items="@(new SelectList(ViewBag.Item,"ItemId","ItemName"))">
+                    <option value="">Item</option>
+                </select>
+                <span asp-validation-for="ItemId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="number" asp-for="Cost" placeholder="Cost" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-column">
+                <input type="number" asp-for="Price" placeholder="Price" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <input type="number" asp-for="Qty" placeholder="Qty" />
+                <span asp-validation-for="Qty" class="text-danger"></span>
+            </div>
+            <div class="d-flex flex-column">
+                <input value="@date" type="Date" asp-for="Date" readonly />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="d-flex mb-3" id="mainForm">
+            <div class="d-flex flex-column">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <span></span>
+            </div>
+        </div>
+    </form>
+</div>
